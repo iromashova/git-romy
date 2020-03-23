@@ -1,0 +1,435 @@
+"C:\Program Files\Java\jdk-11.0.5\bin\java.exe" "-javaagent:C:\Program Files\JetBrains\IntelliJ IDEA Community Edition 2019.3\lib\idea_rt.jar=10854:C:\Program Files\JetBrains\IntelliJ IDEA Community Edition 2019.3\bin" -Dfile.encoding=UTF-8 -classpath C:\Users\yanin\IdeaProjects\HttpApache\target\test-classes;C:\Users\yanin\.m2\repository\org\apache\httpcomponents\httpclient\4.5.6\httpclient-4.5.6.jar;C:\Users\yanin\.m2\repository\org\apache\httpcomponents\httpcore\4.4.10\httpcore-4.4.10.jar;C:\Users\yanin\.m2\repository\commons-logging\commons-logging\1.2\commons-logging-1.2.jar;C:\Users\yanin\.m2\repository\commons-codec\commons-codec\1.10\commons-codec-1.10.jar myTest.HttpExample
+
+
+
+
+
+<html>
+<head>
+  	<title>Log in</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+	<link rel="shortcut icon" type="image/vnd.microsoft.icon" href="./login/login/cv.ico">
+	<link rel="icon" type="image/vnd.microsoft.icon" href="./login/login/cv.ico">
+	<style>
+		html, body{
+			height: 100%;
+			font-family: Roboto, Arial, sans-serif;
+			background-color: #f1f1f1;
+			margin: 0;
+		}
+		#login-container{
+			display: flex;
+			justify-content: center;
+			flex-direction: column;
+			align-items: center;
+			height: 100%;
+		}
+		.login-logo{
+			margin-bottom: 16px;
+			display: inline-block;
+		}
+		.login-version {
+			margin-bottom: 28px;
+			font-size: 14px;
+			color: #000;
+			text-align: center;
+			opacity: .6;
+		}
+		.form-container{
+			width: 320px;
+			border-radius: 2px;
+			background-color: #ffffff;
+			padding-top: 26px;
+			margin-bottom: 0;
+		}
+		.form-container--main {
+			box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.12);
+		}
+		input.login-input{
+			border-radius: 2px;
+			font-size: 16px;
+			line-height: 14px;
+			border: 1px solid #d3d3d3;
+			background-color: #fff!important;
+			display: block;
+			width: 100%;
+			height: 28px;
+			padding-left: 9px;
+		}
+		#lower{
+			text-align: right;
+			border-top: 1px solid #e2e2e2;
+			padding: 16px 26px;
+		}
+		.login-submit{
+			text-transform: uppercase;
+			background-color: #4990e2;
+			border-radius: 2px;
+			padding: 6px 11px;
+			outline: none;
+			cursor: pointer;
+			border: none;
+			color: #fff;
+			font-size: 12px;
+			font-weight: 500;
+		}
+		.login-submit:hover {
+			background-color: #2276d6;
+		}
+		.login-submit:focus {
+			background-color: #3383de;
+		}
+		.form-row{
+			margin-bottom: 22px;
+			padding-left: 26px;
+			padding-right: 26px;
+		}
+		.form-row h3 {
+			font-weight: 500;
+		}
+		.login-href{
+			text-decoration: none;
+			font-size: 12px;
+			color: #4a90e2;
+			margin-bottom: 10px;
+		}
+		.login-href:focus {
+			outline: 2px solid #B0C8FF;
+		}
+		.login-label{
+			opacity: 0.6;
+			font-size: 12px;
+			font-weight: bold;
+			color: #000000;
+			display: block;
+			margin-bottom: 10px;
+		}
+		.password-label-row{
+			display: flex;
+			justify-content: space-between;
+		}
+		select.login-select{
+			display: block;
+			width: 100%;
+			border: none;
+			outline: none;
+			cursor: pointer;
+			font-size: 16px;
+		}
+		.login-select-wrap{
+			display: inline-block;
+			position: relative;
+		}
+		.login-select-wrap::after{
+			position: absolute;
+			content: '';
+			right: -1px;
+			top: -1px;
+			width: 20px;
+			height: 22px;
+			background: #fff url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyB3aWR0aD0iOHB4IiBoZWlnaHQ9IjRweCIgdmlld0JveD0iMCAwIDggNCIgdmVyc2lvbj0iMS4xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIj4KICAgIDwhLS0gR2VuZXJhdG9yOiBTa2V0Y2ggNDQuMSAoNDE0NTUpIC0gaHR0cDovL3d3dy5ib2hlbWlhbmNvZGluZy5jb20vc2tldGNoIC0tPgogICAgPHRpdGxlPlNoYXBlPC90aXRsZT4KICAgIDxkZXNjPkNyZWF0ZWQgd2l0aCBTa2V0Y2guPC9kZXNjPgogICAgPGRlZnM+PC9kZWZzPgogICAgPGcgaWQ9IkxvZ2luIiBzdHJva2U9Im5vbmUiIHN0cm9rZS13aWR0aD0iMSIgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIiBvcGFjaXR5PSIwLjQiPgogICAgICAgIDxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKC01NzcuMDAwMDAwLCAtNDYxLjAwMDAwMCkiIGlkPSJHcm91cC02IiBmaWxsPSIjMDAwMDAwIj4KICAgICAgICAgICAgPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoNDkwLjAwMDAwMCwgMTcwLjAwMDAwMCkiPgogICAgICAgICAgICAgICAgPGcgaWQ9Ikdyb3VwLTQiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDAuMDAwMDAwLCA4MC4wMDAwMDApIj4KICAgICAgICAgICAgICAgICAgICA8ZyBpZD0iR3JvdXAtMyI+CiAgICAgICAgICAgICAgICAgICAgICAgIDxnIGlkPSJHcm91cC0yIj4KICAgICAgICAgICAgICAgICAgICAgICAgICAgIDxnIGlkPSJHcm91cCIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMjYuMDAwMDAwLCAxNzYuMDAwMDAwKSI+CiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgPHBvbHlnb24gaWQ9IlNoYXBlIiBwb2ludHM9IjYxIDM1IDY1IDM5IDY5IDM1Ij48L3BvbHlnb24+CiAgICAgICAgICAgICAgICAgICAgICAgICAgICA8L2c+CiAgICAgICAgICAgICAgICAgICAgICAgIDwvZz4KICAgICAgICAgICAgICAgICAgICA8L2c+CiAgICAgICAgICAgICAgICA8L2c+CiAgICAgICAgICAgIDwvZz4KICAgICAgICA8L2c+CiAgICA8L2c+Cjwvc3ZnPg==') no-repeat center;
+			pointer-events: none;
+		}
+		.error-wrap{
+			display: flex;
+			align-items: center;
+			/* padding-left: 0;
+			padding-right: 0; */
+		}
+		.error-wrap svg{
+			margin-right: 10px;
+			flex-shrink: 0;
+			width: 16px;
+			height: 16px;
+		}
+		.error-label{
+			font-size: 12px;
+			font-weight: 500;
+			color: #d46c79;
+			word-break: break-all;
+		}
+	</style>
+</head>
+<body>
+	<div id="login-container">
+		<div class="login-logo">
+			<svg xmlns="http://www.w3.org/2000/svg" width="260" height="41">
+				<g fill="#B51F24" fill-rule="evenodd">
+					<path d="M242.223 1.392h7.514v1.976h-2.521v6.024h-2.472V3.368h-2.521V1.392zm8.605 0h3.253l1.255 4.868 1.25-4.868h3.24v8h-2.018v-6.1l-1.566 6.1h-1.828l-1.561-6.1v6.1h-2.025v-8zM85.318 2.591H92V40h-6.682zm32.804 38.237C107.352 40.828 99 32.27 99 21.5s8.352-19.672 19.122-19.672 19.122 8.902 19.122 19.672c0 10.77-8.353 19.328-19.122 19.328zm0-6.586c7.132 0 12.663-5.668 12.663-12.8 0-7.132-5.53-13.028-12.663-13.028-7.132 0-12.664 5.896-12.664 13.028 0 7.132 5.532 12.8 12.664 12.8zM.724 39.9L18.237 2.643H24.2l17.782 37.305h-8.743L21.353 12.343 9.352 39.948zm60.622-24.209l-8.68-13.187H44.64l12.694 18.958-12.498 18.344h8.11l8.4-12.68 8.401 12.68h8.11L65.359 21.462 78.053 2.504h-8.027zM162.454 31.09l-9.755-28.51h-9.348v37.368h6.76V11.79l9.438 28.15h5.81l9.439-28.15v28.158h6.758V2.58h-9.347z"/>
+					<path fill-rule="nonzero" d="M214.572 10.055c-.905-2.336-2.708-4.428-5.628-5.815-3.979-1.89-10.435-1.75-14.695.836-4.206 2.552-5.406 8.624-2.688 12.477 1.19 1.685 3.461 2.973 6.757 3.99 1.756.54 7.169 1.759 7.197 1.766l.255.07c4.406 1.245 6.257 2.871 6.027 6.116-.237 3.343-4.03 5.37-8.379 5.37-2.411 0-5.373-.74-7.331-2.493-1.361-1.219-2.216-3.008-2.632-5.329h-4.496c.162 1.783.641 3.529 1.443 5.25.697 1.494 1.612 2.635 2.757 3.567.823.67 1.165.875 3.018 1.887 2.464 1.345 9.448 1.559 12.646.532 5.007-1.609 7.266-5.09 7.436-9.54.131-3.421-1.465-6.333-4.564-8.111-1.175-.674-3.026-1.31-5.587-1.969-.728-.187-1.481-.368-2.45-.594.06.014-1.805-.416-2.28-.528-1.87-.444-2.82-.723-3.498-1.107-.123-.07-1.083-.583-1.351-.747-1.636-1-2.21-2.429-1.673-4.501.873-3.368 5.78-4.757 10.624-3.571 3.063.75 4.923 2.825 5.464 5.904h4.383c-.187-1.496-.443-2.654-.755-3.46zM196.49 23.043c-2.62-.932-5.101-2.266-6.563-4.337-3.284-4.654-2.062-12.095 3.284-15.34 5.346-3.245 12.601-2.828 16.591-.932 3.99 1.895 5.834 4.832 6.635 6.899.534 1.378.897 3.438 1.088 6.182h-8.42c0-3.538-1.414-5.304-4.1-5.962-4.106-1.004-7.715.212-8.213 2.13-.497 1.92.422 2.072 2.073 3.007 1.037.587 4.553 1.236 8.244 2.164l2.192.615c1.254.405 2.486.906 3.39 1.424 3.84 2.203 5.722 5.87 5.567 9.923-.155 4.054-2.04 9.188-8.823 11.367-3.335 1.071-10.988 1.081-14.216-.681-1.825-.997-4.798-2.435-6.63-6.365-1.22-2.62-1.78-5.318-1.68-8.094h8.31c.212 2.768.947 4.715 2.202 5.839 1.888 1.691 5.005 1.983 5.997 1.983 3.34 0 6.238-1.448 6.384-3.511.146-2.064-.995-3.039-4.576-4.05-1.866-.527-5.052-1.033-8.14-2.056l-.596-.205zm50.309 9.206l2 1.998-2 .002v-2zm-16.78 2.006V3.561h-4.554v34.955h21.334v-4.267l-16.78.006zm2-2l2-.001 14.78-.006v8.268h-25.334V1.56h8.554v30.693z"/>
+				</g>
+			</svg>
+		</div>
+		<div class="login-version">
+			Version 10.0.24_1
+		</div>
+		<form class="form-container form-container--main" method="post" action="/cv/login/login">
+
+
+			
+			
+
+
+			<div class="form-row">
+				<label class="login-label" for="username">User Name</label>
+				<input type="hidden" id="current_uri" name="current_uri" value=""/>
+				
+				<input class="login-input" type="text" id="username" name="j_username" value="" tabindex="1">
+			</div>
+
+			<div class="form-row">
+				<div class="password-label-row">
+					<label class="login-label" for="password">Password</label>
+					<a class="login-href" href="/cv/login/forgot-password.jsp" tabindex="4">Forgot password?</a>
+				</div>
+				<input class="login-input" type="password" id="password" name="j_password" value="" tabindex="2">
+			</div>
+			
+				<div class="form-row">
+					<label class="login-label" for="directory">Directory</label>
+					<div class="login-select-wrap">
+						<select id="directory" class="login-select" name="j_directory">
+							<option disabled selected>Select directory</option>
+							
+								<option value="LocalDirectory" >LocalDirectory</option>
+							
+								<option value="AxiomActiveDirectory" selected="selected">AxiomActiveDirectory</option>
+							
+						</select>
+					</div>
+				</div>
+			
+
+			<div id="lower">
+				<input class="login-submit" type="submit" value="LOG IN" tabindex="3">
+			</div>
+
+
+			<script type="text/javascript">
+				if (document.getElementById('current_uri').value === "") {
+                    document.getElementById('current_uri').value = window.location.href;
+				}
+			</script>
+		</form>
+	</div>
+</body>
+</html>
+
+
+
+
+
+
+<html>
+<head>
+  	<title>Log in</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+	<link rel="shortcut icon" type="image/vnd.microsoft.icon" href="./login/login/cv.ico">
+	<link rel="icon" type="image/vnd.microsoft.icon" href="./login/login/cv.ico">
+	<style>
+		html, body{
+			height: 100%;
+			font-family: Roboto, Arial, sans-serif;
+			background-color: #f1f1f1;
+			margin: 0;
+		}
+		#login-container{
+			display: flex;
+			justify-content: center;
+			flex-direction: column;
+			align-items: center;
+			height: 100%;
+		}
+		.login-logo{
+			margin-bottom: 16px;
+			display: inline-block;
+		}
+		.login-version {
+			margin-bottom: 28px;
+			font-size: 14px;
+			color: #000;
+			text-align: center;
+			opacity: .6;
+		}
+		.form-container{
+			width: 320px;
+			border-radius: 2px;
+			background-color: #ffffff;
+			padding-top: 26px;
+			margin-bottom: 0;
+		}
+		.form-container--main {
+			box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.12);
+		}
+		input.login-input{
+			border-radius: 2px;
+			font-size: 16px;
+			line-height: 14px;
+			border: 1px solid #d3d3d3;
+			background-color: #fff!important;
+			display: block;
+			width: 100%;
+			height: 28px;
+			padding-left: 9px;
+		}
+		#lower{
+			text-align: right;
+			border-top: 1px solid #e2e2e2;
+			padding: 16px 26px;
+		}
+		.login-submit{
+			text-transform: uppercase;
+			background-color: #4990e2;
+			border-radius: 2px;
+			padding: 6px 11px;
+			outline: none;
+			cursor: pointer;
+			border: none;
+			color: #fff;
+			font-size: 12px;
+			font-weight: 500;
+		}
+		.login-submit:hover {
+			background-color: #2276d6;
+		}
+		.login-submit:focus {
+			background-color: #3383de;
+		}
+		.form-row{
+			margin-bottom: 22px;
+			padding-left: 26px;
+			padding-right: 26px;
+		}
+		.form-row h3 {
+			font-weight: 500;
+		}
+		.login-href{
+			text-decoration: none;
+			font-size: 12px;
+			color: #4a90e2;
+			margin-bottom: 10px;
+		}
+		.login-href:focus {
+			outline: 2px solid #B0C8FF;
+		}
+		.login-label{
+			opacity: 0.6;
+			font-size: 12px;
+			font-weight: bold;
+			color: #000000;
+			display: block;
+			margin-bottom: 10px;
+		}
+		.password-label-row{
+			display: flex;
+			justify-content: space-between;
+		}
+		select.login-select{
+			display: block;
+			width: 100%;
+			border: none;
+			outline: none;
+			cursor: pointer;
+			font-size: 16px;
+		}
+		.login-select-wrap{
+			display: inline-block;
+			position: relative;
+		}
+		.login-select-wrap::after{
+			position: absolute;
+			content: '';
+			right: -1px;
+			top: -1px;
+			width: 20px;
+			height: 22px;
+			background: #fff url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyB3aWR0aD0iOHB4IiBoZWlnaHQ9IjRweCIgdmlld0JveD0iMCAwIDggNCIgdmVyc2lvbj0iMS4xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIj4KICAgIDwhLS0gR2VuZXJhdG9yOiBTa2V0Y2ggNDQuMSAoNDE0NTUpIC0gaHR0cDovL3d3dy5ib2hlbWlhbmNvZGluZy5jb20vc2tldGNoIC0tPgogICAgPHRpdGxlPlNoYXBlPC90aXRsZT4KICAgIDxkZXNjPkNyZWF0ZWQgd2l0aCBTa2V0Y2guPC9kZXNjPgogICAgPGRlZnM+PC9kZWZzPgogICAgPGcgaWQ9IkxvZ2luIiBzdHJva2U9Im5vbmUiIHN0cm9rZS13aWR0aD0iMSIgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIiBvcGFjaXR5PSIwLjQiPgogICAgICAgIDxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKC01NzcuMDAwMDAwLCAtNDYxLjAwMDAwMCkiIGlkPSJHcm91cC02IiBmaWxsPSIjMDAwMDAwIj4KICAgICAgICAgICAgPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoNDkwLjAwMDAwMCwgMTcwLjAwMDAwMCkiPgogICAgICAgICAgICAgICAgPGcgaWQ9Ikdyb3VwLTQiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDAuMDAwMDAwLCA4MC4wMDAwMDApIj4KICAgICAgICAgICAgICAgICAgICA8ZyBpZD0iR3JvdXAtMyI+CiAgICAgICAgICAgICAgICAgICAgICAgIDxnIGlkPSJHcm91cC0yIj4KICAgICAgICAgICAgICAgICAgICAgICAgICAgIDxnIGlkPSJHcm91cCIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMjYuMDAwMDAwLCAxNzYuMDAwMDAwKSI+CiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgPHBvbHlnb24gaWQ9IlNoYXBlIiBwb2ludHM9IjYxIDM1IDY1IDM5IDY5IDM1Ij48L3BvbHlnb24+CiAgICAgICAgICAgICAgICAgICAgICAgICAgICA8L2c+CiAgICAgICAgICAgICAgICAgICAgICAgIDwvZz4KICAgICAgICAgICAgICAgICAgICA8L2c+CiAgICAgICAgICAgICAgICA8L2c+CiAgICAgICAgICAgIDwvZz4KICAgICAgICA8L2c+CiAgICA8L2c+Cjwvc3ZnPg==') no-repeat center;
+			pointer-events: none;
+		}
+		.error-wrap{
+			display: flex;
+			align-items: center;
+			/* padding-left: 0;
+			padding-right: 0; */
+		}
+		.error-wrap svg{
+			margin-right: 10px;
+			flex-shrink: 0;
+			width: 16px;
+			height: 16px;
+		}
+		.error-label{
+			font-size: 12px;
+			font-weight: 500;
+			color: #d46c79;
+			word-break: break-all;
+		}
+	</style>
+</head>
+<body>
+	<div id="login-container">
+		<div class="login-logo">
+			<svg xmlns="http://www.w3.org/2000/svg" width="260" height="41">
+				<g fill="#B51F24" fill-rule="evenodd">
+					<path d="M242.223 1.392h7.514v1.976h-2.521v6.024h-2.472V3.368h-2.521V1.392zm8.605 0h3.253l1.255 4.868 1.25-4.868h3.24v8h-2.018v-6.1l-1.566 6.1h-1.828l-1.561-6.1v6.1h-2.025v-8zM85.318 2.591H92V40h-6.682zm32.804 38.237C107.352 40.828 99 32.27 99 21.5s8.352-19.672 19.122-19.672 19.122 8.902 19.122 19.672c0 10.77-8.353 19.328-19.122 19.328zm0-6.586c7.132 0 12.663-5.668 12.663-12.8 0-7.132-5.53-13.028-12.663-13.028-7.132 0-12.664 5.896-12.664 13.028 0 7.132 5.532 12.8 12.664 12.8zM.724 39.9L18.237 2.643H24.2l17.782 37.305h-8.743L21.353 12.343 9.352 39.948zm60.622-24.209l-8.68-13.187H44.64l12.694 18.958-12.498 18.344h8.11l8.4-12.68 8.401 12.68h8.11L65.359 21.462 78.053 2.504h-8.027zM162.454 31.09l-9.755-28.51h-9.348v37.368h6.76V11.79l9.438 28.15h5.81l9.439-28.15v28.158h6.758V2.58h-9.347z"/>
+					<path fill-rule="nonzero" d="M214.572 10.055c-.905-2.336-2.708-4.428-5.628-5.815-3.979-1.89-10.435-1.75-14.695.836-4.206 2.552-5.406 8.624-2.688 12.477 1.19 1.685 3.461 2.973 6.757 3.99 1.756.54 7.169 1.759 7.197 1.766l.255.07c4.406 1.245 6.257 2.871 6.027 6.116-.237 3.343-4.03 5.37-8.379 5.37-2.411 0-5.373-.74-7.331-2.493-1.361-1.219-2.216-3.008-2.632-5.329h-4.496c.162 1.783.641 3.529 1.443 5.25.697 1.494 1.612 2.635 2.757 3.567.823.67 1.165.875 3.018 1.887 2.464 1.345 9.448 1.559 12.646.532 5.007-1.609 7.266-5.09 7.436-9.54.131-3.421-1.465-6.333-4.564-8.111-1.175-.674-3.026-1.31-5.587-1.969-.728-.187-1.481-.368-2.45-.594.06.014-1.805-.416-2.28-.528-1.87-.444-2.82-.723-3.498-1.107-.123-.07-1.083-.583-1.351-.747-1.636-1-2.21-2.429-1.673-4.501.873-3.368 5.78-4.757 10.624-3.571 3.063.75 4.923 2.825 5.464 5.904h4.383c-.187-1.496-.443-2.654-.755-3.46zM196.49 23.043c-2.62-.932-5.101-2.266-6.563-4.337-3.284-4.654-2.062-12.095 3.284-15.34 5.346-3.245 12.601-2.828 16.591-.932 3.99 1.895 5.834 4.832 6.635 6.899.534 1.378.897 3.438 1.088 6.182h-8.42c0-3.538-1.414-5.304-4.1-5.962-4.106-1.004-7.715.212-8.213 2.13-.497 1.92.422 2.072 2.073 3.007 1.037.587 4.553 1.236 8.244 2.164l2.192.615c1.254.405 2.486.906 3.39 1.424 3.84 2.203 5.722 5.87 5.567 9.923-.155 4.054-2.04 9.188-8.823 11.367-3.335 1.071-10.988 1.081-14.216-.681-1.825-.997-4.798-2.435-6.63-6.365-1.22-2.62-1.78-5.318-1.68-8.094h8.31c.212 2.768.947 4.715 2.202 5.839 1.888 1.691 5.005 1.983 5.997 1.983 3.34 0 6.238-1.448 6.384-3.511.146-2.064-.995-3.039-4.576-4.05-1.866-.527-5.052-1.033-8.14-2.056l-.596-.205zm50.309 9.206l2 1.998-2 .002v-2zm-16.78 2.006V3.561h-4.554v34.955h21.334v-4.267l-16.78.006zm2-2l2-.001 14.78-.006v8.268h-25.334V1.56h8.554v30.693z"/>
+				</g>
+			</svg>
+		</div>
+		<div class="login-version">
+			Version 10.0.24_1
+		</div>
+		<form class="form-container form-container--main" method="post" action="/cv/login/login">
+
+
+			
+			
+
+
+			<div class="form-row">
+				<label class="login-label" for="username">User Name</label>
+				<input type="hidden" id="current_uri" name="current_uri" value=""/>
+				
+				<input class="login-input" type="text" id="username" name="j_username" value="" tabindex="1">
+			</div>
+
+			<div class="form-row">
+				<div class="password-label-row">
+					<label class="login-label" for="password">Password</label>
+					<a class="login-href" href="/cv/login/forgot-password.jsp" tabindex="4">Forgot password?</a>
+				</div>
+				<input class="login-input" type="password" id="password" name="j_password" value="" tabindex="2">
+			</div>
+			
+				<div class="form-row">
+					<label class="login-label" for="directory">Directory</label>
+					<div class="login-select-wrap">
+						<select id="directory" class="login-select" name="j_directory">
+							<option disabled selected>Select directory</option>
+							
+								<option value="LocalDirectory" >LocalDirectory</option>
+							
+								<option value="AxiomActiveDirectory" selected="selected">AxiomActiveDirectory</option>
+							
+						</select>
+					</div>
+				</div>
+			
+
+			<div id="lower">
+				<input class="login-submit" type="submit" value="LOG IN" tabindex="3">
+			</div>
+
+
+			<script type="text/javascript">
+				if (document.getElementById('current_uri').value === "") {
+                    document.getElementById('current_uri').value = window.location.href;
+				}
+			</script>
+		</form>
+	</div>
+</body>
+</html>
+
+
+Process finished with exit code 0
